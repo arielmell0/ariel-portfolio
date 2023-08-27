@@ -1,20 +1,24 @@
 // 1. Import `extendTheme`
-import { extendTheme, type ThemeConfig } from '@chakra-ui/react'
-import '@fontsource/plus-jakarta-sans/700.css'
-import "@fontsource/inter"
+import { extendTheme, type ThemeConfig } from "@chakra-ui/react";
+import "@fontsource/plus-jakarta-sans/700.css";
+import "@fontsource/inter";
 
 const config: ThemeConfig = {
-  initialColorMode: 'dark',
+  initialColorMode: "dark",
   useSystemColorMode: false,
-}
+};
 
 const theme = extendTheme({
   components: {
     Text: {
       baseStyle: {
-        textAlign: 'center'
-      }
-    }
+        textAlign: "center",
+      },
+      Button: {
+        padding: "0px, 0px, 0px, 0px",
+        margin: "0px, 0px, 0px, 0px"
+      },
+    },
   },
   colors: {
     purple: {
@@ -24,11 +28,9 @@ const theme = extendTheme({
   fonts: {
     heading: `'Plus Jakarta Sans', sans-serif`,
     body: `'Inter', sans-serif`,
-    Card: {
-      
-    }
+    Card: {},
   },
-  config
-})
+  config,
+});
 
-export default theme
+export default theme;

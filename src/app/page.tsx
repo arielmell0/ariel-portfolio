@@ -28,7 +28,8 @@ const NavBar = () => {
   return (
     <Flex
       height={"49px"}
-      minWidth={"1200px"}
+      width={"100vw"}
+      maxWidth={"1200px"}
       direction={"row"}
       align={"center"}
       justify={"center"}
@@ -39,12 +40,12 @@ const NavBar = () => {
       <Button variant={"ghost"}>Logo here :3</Button>
       <Spacer />
       <ButtonGroup variant={"ghost"} spacing={4}>
-        <Button>Services</Button>
-        <Button>Portfolios</Button>
-        <Button>Experiences</Button>
+        <Button display={['none', 'none', 'inline', 'inline']}>Services</Button>
+        <Button display={['none', 'none', 'inline', 'inline']}>Portfolios</Button>
+        <Button display={['none', 'none', 'inline', 'inline']}>Experiences</Button>
         <Button>Blog</Button>
       </ButtonGroup>
-      <Spacer />
+      <Spacer display={['none', 'none', 'inline', 'inline']} />
 
       <ButtonGroup variant={"ghost"} spacing={4}>
         {colorMode === "dark" ? (
@@ -60,7 +61,9 @@ const NavBar = () => {
             iconSpacing={0}
           />
         )}
-        <Button>Resume</Button>
+        <Button display={['none', 'none', 'inline', 'inline']} marginRight={"32px"} paddingRight={"0px"}>
+          Resume
+        </Button>
       </ButtonGroup>
     </Flex>
   );
@@ -69,6 +72,7 @@ const NavBar = () => {
 const Hero = () => {
   return (
     <Flex
+      width={"80vw"}
       maxWidth={"1200px"}
       direction={["column-reverse", "column-reverse", "row", "row"]}
       align={"center"}
@@ -95,7 +99,7 @@ const Hero = () => {
             Ariel Oliveira de Mello
           </Highlight>
         </Heading>
-        <Text alignSelf={"flex-start"} textAlign={'start'} mb={4}>
+        <Text alignSelf={"flex-start"} textAlign={"start"} mb={4}>
           Creative full-stack developer with more than +1 years of experience in
           enterprise companies and startups. Proficient in JavaScript, Node, and
           React. Passionate about Dev-ops
@@ -115,9 +119,15 @@ const Hero = () => {
         direction={"column"}
         align={"center"}
         justify={"center"}
-        width={"50%"}
+        width={['80%', '80%', '50%', '50%']}
       >
-        <ReactSVG src="HeroImage.svg" />
+        <ReactSVG
+          beforeInjection={(svg) => {
+            svg.classList.add("svg-class-name");
+            svg.setAttribute("style", "width: 100%");
+          }}
+          src="HeroImage.svg"
+        />
       </Flex>
     </Flex>
   );
@@ -133,35 +143,44 @@ const Services = () => {
       justify={"center"}
       backgroundColor={"#FBFBFB"}
     >
-      <Container marginBottom={"104px"} centerContent>
+      <Container marginBottom={"104px"} padding={0} centerContent>
         <Text>Services</Text>
         <Heading>Specialized in</Heading>
       </Container>
 
-      <Flex width={'100vw'} justify={'space-evenly'} align={'center'}>
+      <Flex
+        width={"100vw"}
+        justify={"space-evenly"}
+        align={"center"}
+        direction={["column", "column", "row", "row"]}
+      >
         <Card
-          width={"361px"}
+          width={["100%", "100%", "361px", "361px"]}
           height={"294px"}
           display={"flex"}
           align={"center"}
           justify={"center"}
         >
           <ReactSVG src="Crown.svg" />
-          <Heading marginY={["20px", "20px"]} fontSize={'16px'}>Cloud</Heading>
-          <Text width={"274px"} textAlign={'center'}>
+          <Heading marginY={["20px", "20px"]} fontSize={"16px"}>
+            Cloud
+          </Heading>
+          <Text width={"274px"} textAlign={"center"}>
             Deploy your applications with low cost and security
           </Text>
         </Card>
 
         <Card
-          width={"361px"}
+          width={["100%", "100%", "361px", "361px"]}
           height={"294px"}
           display={"flex"}
           align={"center"}
           justify={"center"}
         >
           <ReactSVG src="Crown.svg" />
-          <Heading marginY={["20px", "20px"]} fontSize={'16px'}>Application Development</Heading>
+          <Heading marginY={["20px", "20px"]} fontSize={"16px"}>
+            Application Development
+          </Heading>
           <Text width={"274px"}>
             Standard designing, building, and implementing your applications
             with documentation.
@@ -169,14 +188,16 @@ const Services = () => {
         </Card>
 
         <Card
-          width={"361px"}
+          width={["100%", "100%", "361px", "361px"]}
           height={"294px"}
           display={"flex"}
           align={"center"}
           justify={"center"}
         >
           <ReactSVG src="Crown.svg" />
-          <Heading marginY={["20px", "20px"]} fontSize={'16px'}>Web Development</Heading>
+          <Heading marginY={["20px", "20px"]} fontSize={"16px"}>
+            Web Development
+          </Heading>
           <Text width={"274px"}>
             Create and maintain your websites and also take care of its
             performance and traffic capacity.
@@ -191,7 +212,7 @@ export default function Home() {
   return (
     <Fragment>
       <Flex
-        minWidth={"100vw"}
+        width={"100vw"}
         minHeight={"100vh"}
         direction={"column"}
         align={"center"}
