@@ -33,19 +33,23 @@ const NavBar = () => {
       direction={"row"}
       align={"center"}
       justify={"center"}
-      marginBottom={"5%"}
+      marginBottom={["none", "none", "10%", "10%"]}
       justifySelf={"flex-start"}
       marginTop={"1%"}
     >
       <Button variant={"ghost"}>Logo here :3</Button>
       <Spacer />
       <ButtonGroup variant={"ghost"} spacing={4}>
-        <Button display={['none', 'none', 'inline', 'inline']}>Services</Button>
-        <Button display={['none', 'none', 'inline', 'inline']}>Portfolios</Button>
-        <Button display={['none', 'none', 'inline', 'inline']}>Experiences</Button>
+        <Button display={["none", "none", "inline", "inline"]}>Services</Button>
+        <Button display={["none", "none", "inline", "inline"]}>
+          Portfolios
+        </Button>
+        <Button display={["none", "none", "inline", "inline"]}>
+          Experiences
+        </Button>
         <Button>Blog</Button>
       </ButtonGroup>
-      <Spacer display={['none', 'none', 'inline', 'inline']} />
+      <Spacer display={["none", "none", "inline", "inline"]} />
 
       <ButtonGroup variant={"ghost"} spacing={4}>
         {colorMode === "dark" ? (
@@ -61,7 +65,11 @@ const NavBar = () => {
             iconSpacing={0}
           />
         )}
-        <Button display={['none', 'none', 'inline', 'inline']} marginRight={"32px"} paddingRight={"0px"}>
+        <Button
+          display={["none", "none", "inline", "inline"]}
+          marginRight={"32px"}
+          paddingRight={"0px"}
+        >
           Resume
         </Button>
       </ButtonGroup>
@@ -77,7 +85,6 @@ const Hero = () => {
       direction={["column-reverse", "column-reverse", "row", "row"]}
       align={"center"}
       justify={"space-evenly"}
-      marginTop={"50px"}
     >
       <Flex
         direction={"column"}
@@ -105,7 +112,12 @@ const Hero = () => {
           React. Passionate about Dev-ops
         </Text>
 
-        <ButtonGroup alignSelf={"flex-start"} variant={"ghost"} spacing={2}>
+        <ButtonGroup
+          alignSelf={["center", "center", "flex-start", "flex-start"]}
+          variant={"ghost"}
+          marginBottom={"25px"}
+          spacing={2}
+        >
           <Button rightIcon={<ReactSVG src="Github.svg" />} iconSpacing={0} />
           <Button rightIcon={<ReactSVG src="Linkedin.svg" />} iconSpacing={0} />
           <Button rightIcon={<ReactSVG src="Twitter.svg" />} iconSpacing={0} />
@@ -116,17 +128,17 @@ const Hero = () => {
         </ButtonGroup>
       </Flex>
       <Flex
-        direction={"column"}
+        width={["100%", "100%", "50%", "50%"]}
+        height={"450px"}
         align={"center"}
         justify={"center"}
-        width={['80%', '80%', '50%', '50%']}
       >
         <ReactSVG
-          beforeInjection={(svg) => {
-            svg.classList.add("svg-class-name");
-            svg.setAttribute("style", "width: 100%");
-          }}
           src="HeroImage.svg"
+          beforeInjection={(svg) => {
+            const screenSize = window.innerWidth
+            if(screenSize < 768) svg.setAttribute('style', 'transform: scale(80%)')
+          }}
         />
       </Flex>
     </Flex>
@@ -139,11 +151,11 @@ const Services = () => {
       minWidth={"100vw"}
       minHeight={"100vh"}
       direction={"column"}
-      align={""}
+      align={"center"}
       justify={"center"}
       backgroundColor={"#FBFBFB"}
     >
-      <Container marginBottom={"104px"} padding={0} centerContent>
+      <Container mt={"8%"} mb={"8%"} padding={0} centerContent>
         <Text>Services</Text>
         <Heading>Specialized in</Heading>
       </Container>
@@ -156,6 +168,7 @@ const Services = () => {
       >
         <Card
           width={["100%", "100%", "361px", "361px"]}
+          mb={"4%"}
           height={"294px"}
           display={"flex"}
           align={"center"}
@@ -172,6 +185,7 @@ const Services = () => {
 
         <Card
           width={["100%", "100%", "361px", "361px"]}
+          mb={"4%"}
           height={"294px"}
           display={"flex"}
           align={"center"}
@@ -189,6 +203,7 @@ const Services = () => {
 
         <Card
           width={["100%", "100%", "361px", "361px"]}
+          mb={"4%"}
           height={"294px"}
           display={"flex"}
           align={"center"}
