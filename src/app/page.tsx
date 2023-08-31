@@ -15,6 +15,7 @@ import {
   Text,
   VStack,
   useColorMode,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { Fragment, useState } from "react";
 import HeroImage from "../assets/svg/HeroImage.svg";
@@ -78,6 +79,22 @@ const NavBar = () => {
 };
 
 const Hero = () => {
+  const GithubIcon = useColorModeValue(
+    <ReactSVG src="Github.svg" />,
+    <ReactSVG src="GithubDarkMode.svg" />
+  );
+  const InstagramIcon = useColorModeValue(
+    <ReactSVG src="Instagram.svg" />,
+    <ReactSVG src="InstagramDarkMode.svg" />
+  );
+  const LinkedinIcon = useColorModeValue(
+    <ReactSVG src="Linkedin.svg" />,
+    <ReactSVG src="LinkedinDarkMode.svg" />
+  );
+  const TwitterIcon = useColorModeValue(
+    <ReactSVG src="Twitter.svg" />,
+    <ReactSVG src="TwitterDarkMode.svg" />
+  );
   return (
     <Flex
       width={"80vw"}
@@ -118,13 +135,10 @@ const Hero = () => {
           marginBottom={"25px"}
           spacing={2}
         >
-          <Button rightIcon={<ReactSVG src="Github.svg" />} iconSpacing={0} />
-          <Button rightIcon={<ReactSVG src="Linkedin.svg" />} iconSpacing={0} />
-          <Button rightIcon={<ReactSVG src="Twitter.svg" />} iconSpacing={0} />
-          <Button
-            rightIcon={<ReactSVG src="Instagram.svg" />}
-            iconSpacing={0}
-          />
+          <Button rightIcon={GithubIcon} iconSpacing={0} />
+          <Button rightIcon={InstagramIcon} iconSpacing={0} />
+          <Button rightIcon={TwitterIcon} iconSpacing={0} />
+          <Button rightIcon={InstagramIcon} iconSpacing={0} />
         </ButtonGroup>
       </Flex>
       <Flex
@@ -136,8 +150,9 @@ const Hero = () => {
         <ReactSVG
           src="HeroImage.svg"
           beforeInjection={(svg) => {
-            const screenSize = window.innerWidth
-            if(screenSize < 768) svg.setAttribute('style', 'transform: scale(80%)')
+            const screenSize = window.innerWidth;
+            if (screenSize < 768)
+              svg.setAttribute("style", "transform: scale(80%)");
           }}
         />
       </Flex>
@@ -146,6 +161,9 @@ const Hero = () => {
 };
 
 const Services = () => {
+  const { colorMode } = useColorMode();
+  console.log("🚀 ~ file: page.tsx:155 ~ Services ~ colorMode:", colorMode);
+  const bg = useColorModeValue("FBFBFB", "#202736");
   return (
     <Flex
       minWidth={"100vw"}
@@ -153,7 +171,7 @@ const Services = () => {
       direction={"column"}
       align={"center"}
       justify={"center"}
-      backgroundColor={"#FBFBFB"}
+      backgroundColor={bg}
     >
       <Container mt={"8%"} mb={"8%"} padding={0} centerContent>
         <Text>Services</Text>
@@ -174,7 +192,11 @@ const Services = () => {
           align={"center"}
           justify={"center"}
         >
-          <ReactSVG src="Crown.svg" />
+          {colorMode === "light" ? (
+            <ReactSVG src="Crown.svg" />
+          ) : (
+            <ReactSVG src="CrownDarkMode.svg" />
+          )}
           <Heading marginY={["20px", "20px"]} fontSize={"16px"}>
             Cloud
           </Heading>
@@ -191,7 +213,11 @@ const Services = () => {
           align={"center"}
           justify={"center"}
         >
-          <ReactSVG src="Crown.svg" />
+          {colorMode === "light" ? (
+            <ReactSVG src="Crown.svg" />
+          ) : (
+            <ReactSVG src="CrownDarkMode.svg" />
+          )}
           <Heading marginY={["20px", "20px"]} fontSize={"16px"}>
             Application Development
           </Heading>
@@ -209,7 +235,11 @@ const Services = () => {
           align={"center"}
           justify={"center"}
         >
-          <ReactSVG src="Crown.svg" />
+          {colorMode === "light" ? (
+            <ReactSVG src="Crown.svg" />
+          ) : (
+            <ReactSVG src="CrownDarkMode.svg" />
+          )}
           <Heading marginY={["20px", "20px"]} fontSize={"16px"}>
             Web Development
           </Heading>
