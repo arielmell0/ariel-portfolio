@@ -1,6 +1,6 @@
-"use client";
+'use client'
 
-import { ArrowForwardIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
+import { ArrowForwardIcon, MoonIcon, SunIcon } from '@chakra-ui/icons'
 import {
   Badge,
   Box,
@@ -13,50 +13,51 @@ import {
   HStack,
   Heading,
   Highlight,
+  Input,
   Spacer,
   Stack,
   Text,
   VStack,
   useColorMode,
-  useColorModeValue,
-} from "@chakra-ui/react";
-import { Fragment, useState } from "react";
-import HeroImage from "../assets/svg/HeroImage.svg";
-import { ReactSVG } from "react-svg";
-import { Icon, createIcon } from "@chakra-ui/react";
-import Head from "next/head";
+  useColorModeValue
+} from '@chakra-ui/react'
+import { Fragment, useState } from 'react'
+import HeroImage from '../assets/svg/HeroImage.svg'
+import { ReactSVG } from 'react-svg'
+import { Icon, createIcon } from '@chakra-ui/react'
+import Head from 'next/head'
 
 const NavBar = () => {
-  const { colorMode, toggleColorMode } = useColorMode();
+  const { colorMode, toggleColorMode } = useColorMode()
 
   return (
     <Flex
-      height={"49px"}
-      width={"100vw"}
-      maxWidth={"1200px"}
-      direction={"row"}
-      align={"center"}
-      justify={"center"}
-      marginBottom={["none", "none", "10%", "10%"]}
-      justifySelf={"flex-start"}
-      marginTop={"1%"}
+      height={'49px'}
+      width={'100vw'}
+      maxWidth={'1200px'}
+      direction={'row'}
+      align={'center'}
+      justify={'center'}
+      marginBottom={['none', 'none', '10%', '10%']}
+      justifySelf={'flex-start'}
+      marginTop={'1%'}
     >
-      <Button variant={"ghost"}>Logo here :3</Button>
+      <Button variant={'ghost'}>Logo here :3</Button>
       <Spacer />
-      <ButtonGroup variant={"ghost"} spacing={4}>
-        <Button display={["none", "none", "inline", "inline"]}>Services</Button>
-        <Button display={["none", "none", "inline", "inline"]}>
+      <ButtonGroup variant={'ghost'} spacing={4}>
+        <Button display={['none', 'none', 'inline', 'inline']}>Services</Button>
+        <Button display={['none', 'none', 'inline', 'inline']}>
           Portfolios
         </Button>
-        <Button display={["none", "none", "inline", "inline"]}>
+        <Button display={['none', 'none', 'inline', 'inline']}>
           Experiences
         </Button>
         <Button>Blog</Button>
       </ButtonGroup>
-      <Spacer display={["none", "none", "inline", "inline"]} />
+      <Spacer display={['none', 'none', 'inline', 'inline']} />
 
-      <ButtonGroup variant={"ghost"} spacing={4}>
-        {colorMode === "dark" ? (
+      <ButtonGroup variant={'ghost'} spacing={4}>
+        {colorMode === 'dark' ? (
           <Button
             rightIcon={<MoonIcon />}
             onClick={toggleColorMode}
@@ -70,72 +71,72 @@ const NavBar = () => {
           />
         )}
         <Button
-          display={["none", "none", "inline", "inline"]}
-          marginRight={"32px"}
-          paddingRight={"0px"}
+          display={['none', 'none', 'inline', 'inline']}
+          marginRight={'32px'}
+          paddingRight={'0px'}
         >
           Resume
         </Button>
       </ButtonGroup>
     </Flex>
-  );
-};
+  )
+}
 
 const Hero = () => {
   const GithubIcon = useColorModeValue(
     <ReactSVG src="Github.svg" />,
     <ReactSVG src="GithubDarkMode.svg" />
-  );
+  )
   const InstagramIcon = useColorModeValue(
     <ReactSVG src="Instagram.svg" />,
     <ReactSVG src="InstagramDarkMode.svg" />
-  );
+  )
   const LinkedinIcon = useColorModeValue(
     <ReactSVG src="Linkedin.svg" />,
     <ReactSVG src="LinkedinDarkMode.svg" />
-  );
+  )
   const TwitterIcon = useColorModeValue(
     <ReactSVG src="Twitter.svg" />,
     <ReactSVG src="TwitterDarkMode.svg" />
-  );
+  )
   return (
     <Flex
-      width={"80vw"}
-      maxWidth={"1200px"}
-      direction={["column-reverse", "column-reverse", "row", "row"]}
-      align={"center"}
-      justify={"space-evenly"}
+      width={'80vw'}
+      maxWidth={'1200px'}
+      direction={['column-reverse', 'column-reverse', 'row', 'row']}
+      align={'center'}
+      justify={'space-evenly'}
     >
       <Flex
-        direction={"column"}
-        align={"center"}
-        justify={"center"}
-        width={"50%"}
+        direction={'column'}
+        align={'center'}
+        justify={'center'}
+        width={'50%'}
       >
         <Text
-          alignSelf={"flex-start"}
+          alignSelf={'flex-start'}
           mb={4}
           fontSize={12}
-          fontWeight={"medium"}
-          color={"#656D72"}
+          fontWeight={'medium'}
+          color={'#656D72'}
         >
           MY NAME IS
         </Text>
-        <Heading alignSelf={"flex-start"} mb={4}>
-          <Highlight query="Mello" styles={{ color: "purple.100" }}>
+        <Heading alignSelf={'flex-start'} mb={4}>
+          <Highlight query="Mello" styles={{ color: 'purple.100' }}>
             Ariel Oliveira de Mello
           </Highlight>
         </Heading>
-        <Text alignSelf={"flex-start"} textAlign={"start"} mb={4}>
+        <Text alignSelf={'flex-start'} textAlign={'start'} mb={4}>
           Creative full-stack developer with more than +1 years of experience in
           enterprise companies and startups. Proficient in JavaScript, Node, and
           React. Passionate about Dev-ops
         </Text>
 
         <ButtonGroup
-          alignSelf={["center", "center", "flex-start", "flex-start"]}
-          variant={"ghost"}
-          marginBottom={"25px"}
+          alignSelf={['center', 'center', 'flex-start', 'flex-start']}
+          variant={'ghost'}
+          marginBottom={'25px'}
           spacing={2}
         >
           <Button rightIcon={GithubIcon} iconSpacing={0} />
@@ -145,156 +146,156 @@ const Hero = () => {
         </ButtonGroup>
       </Flex>
       <Flex
-        width={["100%", "100%", "50%", "50%"]}
-        height={"450px"}
-        align={"center"}
-        justify={"center"}
+        width={['100%', '100%', '50%', '50%']}
+        height={'450px'}
+        align={'center'}
+        justify={'center'}
       >
         <ReactSVG
           src="HeroImage.svg"
-          beforeInjection={(svg) => {
-            const screenSize = window.innerWidth;
+          beforeInjection={svg => {
+            const screenSize = window.innerWidth
             if (screenSize < 768)
-              svg.setAttribute("style", "transform: scale(80%)");
+              svg.setAttribute('style', 'transform: scale(80%)')
           }}
         />
       </Flex>
     </Flex>
-  );
-};
+  )
+}
 
 const Services = () => {
-  const { colorMode } = useColorMode();
-  console.log("🚀 ~ file: page.tsx:155 ~ Services ~ colorMode:", colorMode);
-  const bg = useColorModeValue("#FBFBFB", "#202736");
+  const { colorMode } = useColorMode()
+  console.log('🚀 ~ file: page.tsx:155 ~ Services ~ colorMode:', colorMode)
+  const bg = useColorModeValue('#FBFBFB', '#202736')
   return (
     <Flex
-      minWidth={"100vw"}
-      minHeight={"100vh"}
-      direction={"column"}
-      align={"center"}
-      justify={"center"}
+      minWidth={'100vw'}
+      minHeight={'100vh'}
+      direction={'column'}
+      align={'center'}
+      justify={'center'}
       backgroundColor={bg}
     >
-      <Container mt={"8%"} mb={"8%"} padding={0} centerContent>
+      <Container mt={'8%'} mb={'8%'} padding={0} centerContent>
         <Text>Services</Text>
         <Heading>Specialized in</Heading>
       </Container>
 
       <Flex
-        width={"100vw"}
-        justify={"space-evenly"}
-        align={"center"}
-        direction={["column", "column", "row", "row"]}
+        width={'100vw'}
+        justify={'space-evenly'}
+        align={'center'}
+        direction={['column', 'column', 'row', 'row']}
       >
         <Card
-          width={["100%", "100%", "361px", "361px"]}
-          mb={"4%"}
-          height={"294px"}
-          display={"flex"}
-          align={"center"}
-          justify={"center"}
+          width={['100%', '100%', '361px', '361px']}
+          mb={'4%'}
+          height={'294px'}
+          display={'flex'}
+          align={'center'}
+          justify={'center'}
         >
-          {colorMode === "light" ? (
+          {colorMode === 'light' ? (
             <ReactSVG src="Crown.svg" />
           ) : (
             <ReactSVG src="CrownDarkMode.svg" />
           )}
-          <Heading marginY={["20px", "20px"]} fontSize={"16px"}>
+          <Heading marginY={['20px', '20px']} fontSize={'16px'}>
             Cloud
           </Heading>
-          <Text width={"274px"} textAlign={"center"}>
+          <Text width={'274px'} textAlign={'center'}>
             Deploy your applications with low cost and security
           </Text>
         </Card>
 
         <Card
-          width={["100%", "100%", "361px", "361px"]}
-          mb={"4%"}
-          height={"294px"}
-          display={"flex"}
-          align={"center"}
-          justify={"center"}
+          width={['100%', '100%', '361px', '361px']}
+          mb={'4%'}
+          height={'294px'}
+          display={'flex'}
+          align={'center'}
+          justify={'center'}
         >
-          {colorMode === "light" ? (
+          {colorMode === 'light' ? (
             <ReactSVG src="Crown.svg" />
           ) : (
             <ReactSVG src="CrownDarkMode.svg" />
           )}
-          <Heading marginY={["20px", "20px"]} fontSize={"16px"}>
+          <Heading marginY={['20px', '20px']} fontSize={'16px'}>
             Application Development
           </Heading>
-          <Text width={"274px"}>
+          <Text width={'274px'}>
             Standard designing, building, and implementing your applications
             with documentation.
           </Text>
         </Card>
 
         <Card
-          width={["100%", "100%", "361px", "361px"]}
-          mb={"4%"}
-          height={"294px"}
-          display={"flex"}
-          align={"center"}
-          justify={"center"}
+          width={['100%', '100%', '361px', '361px']}
+          mb={'4%'}
+          height={'294px'}
+          display={'flex'}
+          align={'center'}
+          justify={'center'}
         >
-          {colorMode === "light" ? (
+          {colorMode === 'light' ? (
             <ReactSVG src="Crown.svg" />
           ) : (
             <ReactSVG src="CrownDarkMode.svg" />
           )}
-          <Heading marginY={["20px", "20px"]} fontSize={"16px"}>
+          <Heading marginY={['20px', '20px']} fontSize={'16px'}>
             Web Development
           </Heading>
-          <Text width={"274px"}>
+          <Text width={'274px'}>
             Create and maintain your websites and also take care of its
             performance and traffic capacity.
           </Text>
         </Card>
       </Flex>
     </Flex>
-  );
-};
+  )
+}
 
 const Experiences = () => {
-  const [selectedExperience, setSelectedExperience] = useState("infleux");
-  const bg = useColorModeValue("#FBFBFB", "#202736");
-  const jobHeaderTextColor = useColorModeValue("#232E35", "#FBFBFB");
-  const jobDescriptionTextColor = useColorModeValue("#656D72", "#FBFBFB");
-  const buttonBackground = useColorModeValue("#FBFBFB", "#1A202C");
+  const [selectedExperience, setSelectedExperience] = useState('infleux')
+  const bg = useColorModeValue('#FBFBFB', '#202736')
+  const jobHeaderTextColor = useColorModeValue('#232E35', '#FBFBFB')
+  const jobDescriptionTextColor = useColorModeValue('#656D72', '#FBFBFB')
+  const buttonBackground = useColorModeValue('#FBFBFB', '#1A202C')
 
   return (
     <Flex
-      width={"100vw"}
-      minHeight={"100vh"}
-      align={"center"}
-      justify={["center", "center", "space-evenly", "space-evenly"]}
+      width={'100vw'}
+      minHeight={'100vh'}
+      align={'center'}
+      justify={['center', 'center', 'space-evenly', 'space-evenly']}
       backgroundColor={bg}
-      direction={["column", "column", "row", "row"]}
+      direction={['column', 'column', 'row', 'row']}
     >
       <Flex
-        direction={"column"}
-        align={"flex-start"}
-        justify={"center"}
-        mb={["10%", "10%", 0, 0]}
+        direction={'column'}
+        align={'flex-start'}
+        justify={'center'}
+        mb={['10%', '10%', 0, 0]}
         // width={'50%'}
       >
-        <Box mb={"10%"}>
+        <Box mb={'10%'}>
           <Text
-            display={"inline"}
+            display={'inline'}
             fontSize={12}
-            fontWeight={"medium"}
-            color={"#656D72"}
+            fontWeight={'medium'}
+            color={'#656D72'}
           >
             CARRER PATH
           </Text>
           <Heading>Work Experiences</Heading>
         </Box>
-        <ButtonGroup variant={"ghost"} spacing={4}>
+        <ButtonGroup variant={'ghost'} spacing={4}>
           <Button
-            color={"#7E74F1"}
-            width={"280px"}
-            onClick={() => setSelectedExperience("infleux")}
+            color={'#7E74F1'}
+            width={'280px'}
+            onClick={() => setSelectedExperience('infleux')}
             background={buttonBackground}
             // style={selectedExperience === 'infleux' ? { background: 'FBFBFB' }}
           >
@@ -306,18 +307,18 @@ const Experiences = () => {
       </Flex>
 
       <Flex
-        direction={"column"}
-        align={["center", "center", "flex-start", "flex-start"]}
-        justify={"center"}
+        direction={'column'}
+        align={['center', 'center', 'flex-start', 'flex-start']}
+        justify={'center'}
         width={['100%', '100%', '50%', '50%']}
       >
         <Flex
-          direction={"column"}
-          justify={"space-around"}
-          align={["center", "center", "flex-start", "flex-start"]}
-          mb={"5%"}
+          direction={'column'}
+          justify={'space-around'}
+          align={['center', 'center', 'flex-start', 'flex-start']}
+          mb={'5%'}
         >
-          <Text fontSize={18} fontWeight={"medium"} color={jobHeaderTextColor}>
+          <Text fontSize={18} fontWeight={'medium'} color={jobHeaderTextColor}>
             Front-end Developer infleux .co
           </Text>
           <Text fontSize={14} mb={4}>
@@ -327,11 +328,11 @@ const Experiences = () => {
             Out 2022 - Present · Full-time
           </Text>
           <Stack
-            wrap={"wrap"}
-            direction={"row"}
-            justify={["center", "center", "flex-start", "flex-start"]}
+            wrap={'wrap'}
+            direction={'row'}
+            justify={['center', 'center', 'flex-start', 'flex-start']}
             spacing={2}
-            width={"100%"}
+            width={'100%'}
           >
             <Badge>React</Badge>
             <Badge>Node</Badge>
@@ -344,7 +345,7 @@ const Experiences = () => {
           </Stack>
         </Flex>
         <Divider width={'80%'} mb={'5%'} />
-        <Stack width={'80%'} direction={"column"} spacing={2}>
+        <Stack width={'80%'} direction={'column'} spacing={2}>
           <Text color={jobDescriptionTextColor}>
             - Software developer with experience in backend and frontend
             development. Skilled in using Node.js, FeathersJS, MongoDB, MySQL,
@@ -357,18 +358,73 @@ const Experiences = () => {
         </Stack>
       </Flex>
     </Flex>
-  );
-};
+  )
+}
+
+const Contact = () => {
+  const bg = useColorModeValue('#FBFBFB', '#202736')
+
+  return (
+    <Flex
+      minWidth={'100vw'}
+      minHeight={'100vh'}
+      direction={'row'}
+      align={'center'}
+      justify={'space-evenly'}
+      backgroundColor={bg}
+    >
+      <VStack width={'600px'} spacing={4}>
+        <Input width={'100%'} placeholder="Name" height="48px" />
+        <Input width={'100%'} placeholder="Email" height="48px" />
+        <Input width={'100%'} placeholder="Message" height="189px" />
+        <Button
+          backgroundColor={'#7E74F1'}
+          width={'100%'}
+          height={'48px'}
+          marginTop={4}
+        >
+          Send message
+        </Button>
+      </VStack>
+
+      <VStack align={'flex-start'} justify={'space-between'} height={'264px'} spacing={4}>
+        <HStack justify={'flex-start'}>
+          <ReactSVG src="Localization.svg" />
+          <VStack ml={'16px'}>
+            <Text fontWeight={700}>Address</Text>
+            <Text>Torres, Brazil</Text>
+          </VStack>
+        </HStack>
+
+        <HStack>
+          <ReactSVG src="Phone.svg" />
+          <VStack ml={'16px'}>
+            <Text fontWeight={700}>Phone</Text>
+            <Text>(48) 991396702</Text>
+          </VStack>
+        </HStack>
+
+        <HStack>
+          <ReactSVG src="Email.svg" />
+          <VStack ml={'16px'}>
+            <Text fontWeight={700}>Email</Text>
+            <Text>arieldemello@hotmail.com</Text>
+          </VStack>
+        </HStack>
+      </VStack>
+    </Flex>
+  )
+}
 
 export default function Home() {
   return (
     <Fragment>
       <Flex
-        width={"100vw"}
-        minHeight={"100vh"}
-        direction={"column"}
-        align={"center"}
-        justify={"flex-start"}
+        width={'100vw'}
+        minHeight={'100vh'}
+        direction={'column'}
+        align={'center'}
+        justify={'flex-start'}
       >
         <NavBar />
         <Hero />
@@ -376,6 +432,7 @@ export default function Home() {
 
       <Services />
       <Experiences />
+      <Contact />
     </Fragment>
-  );
+  )
 }
