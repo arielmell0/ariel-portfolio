@@ -22,19 +22,10 @@ import {
   useColorModeValue
 } from '@chakra-ui/react'
 import { Fragment, useState } from 'react'
-import HeroImage from '../assets/svg/HeroImage.svg'
 import { ReactSVG } from 'react-svg'
-import { Icon, createIcon } from '@chakra-ui/react'
-import Head from 'next/head'
 import {
   Link,
-  DirectLink,
-  Element,
-  Events,
-  animateScroll as scroll,
-  scrollSpy,
-  scroller
-} from 'react-scroll'
+  Element} from 'react-scroll'
 const NavBar = () => {
   const { colorMode, toggleColorMode } = useColorMode()
 
