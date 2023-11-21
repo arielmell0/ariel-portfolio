@@ -419,7 +419,7 @@ const Contact = () => {
 
   const [isLoading, setIsLoading] = useState(false)
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault()
 
     setIsLoading(true)
