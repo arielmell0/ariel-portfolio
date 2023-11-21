@@ -363,6 +363,7 @@ const Experiences = () => {
 
 const Contact = () => {
   const bg = useColorModeValue('#FBFBFB', '#202736')
+  const { colorMode } = useColorMode()
 
   return (
     <Flex
@@ -382,6 +383,7 @@ const Contact = () => {
           width={'100%'}
           height={'48px'}
           marginTop={4}
+          color={'white'}
         >
           Send message
         </Button>
@@ -389,7 +391,11 @@ const Contact = () => {
 
       <VStack align={'flex-start'} justify={'space-between'} height={'264px'} spacing={4}>
         <HStack justify={'flex-start'}>
-          <ReactSVG src="Localization.svg" />
+          { colorMode === 'light' ? (
+            <ReactSVG src="Localization.svg" />
+          ) : (
+            <ReactSVG src="LocalizationDarkMode.svg" />
+          )}
           <VStack ml={'16px'}>
             <Text fontWeight={700}>Address</Text>
             <Text>Torres, Brazil</Text>
@@ -397,7 +403,11 @@ const Contact = () => {
         </HStack>
 
         <HStack>
-          <ReactSVG src="Phone.svg" />
+          { colorMode === 'light' ? (
+            <ReactSVG src="Phone.svg" />
+          ) : (
+            <ReactSVG src="PhoneDarkMode.svg" />
+          )}
           <VStack ml={'16px'}>
             <Text fontWeight={700}>Phone</Text>
             <Text>(48) 991396702</Text>
@@ -405,7 +415,11 @@ const Contact = () => {
         </HStack>
 
         <HStack>
-          <ReactSVG src="Email.svg" />
+          { colorMode === 'light' ? (
+            <ReactSVG src="Email.svg" />
+          ) : (
+            <ReactSVG src="EmailDarkMode.svg" />
+          )}
           <VStack ml={'16px'}>
             <Text fontWeight={700}>Email</Text>
             <Text>arieldemello@hotmail.com</Text>
