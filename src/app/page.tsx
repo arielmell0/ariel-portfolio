@@ -463,25 +463,25 @@ const Contact = () => {
         <VStack width={'600px'} spacing={4}>
           <Input
             onChange={e => handleChange('name', e)}
-            width={'100%'}
+            width={['80vw', '80vw', '100%', '100%']}
             placeholder="Name"
             height="48px"
           />
           <Input
             onChange={e => handleChange('email', e)}
-            width={'100%'}
+            width={['80vw', '80vw', '100%', '100%']}
             placeholder="Email"
             height="48px"
           />
           <Input
             onChange={e => handleChange('message', e)}
-            width={'100%'}
+            width={['80vw', '80vw', '100%', '100%']}
             placeholder="Message"
             height="189px"
           />
           <Button
             backgroundColor={'#7E74F1'}
-            width={'100%'}
+            width={['80vw', '80vw', '100%', '100%']}
             height={'48px'}
             marginTop={4}
             color={'white'}
