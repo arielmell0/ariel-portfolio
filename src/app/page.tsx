@@ -56,16 +56,6 @@ const NavBar = () => {
           Portfolios
         </Button> */}
         <Link
-          activeClass="contactActive"
-          to="contact"
-          smooth={true}
-          duration={500}
-        >
-          <Button display={['none', 'none', 'inline', 'inline']}>
-            Contact
-          </Button>
-        </Link>
-        <Link
           activeClass="experiencesActive"
           to="experiences"
           smooth={true}
@@ -73,6 +63,16 @@ const NavBar = () => {
         >
           <Button display={['none', 'none', 'inline', 'inline']}>
             Experiences
+          </Button>
+        </Link>
+        <Link
+          activeClass="contactActive"
+          to="contact"
+          smooth={true}
+          duration={500}
+        >
+          <Button display={['none', 'none', 'inline', 'inline']}>
+            Contact
           </Button>
         </Link>
         {/* <Button>Blog</Button> */}
