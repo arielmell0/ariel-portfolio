@@ -21,7 +21,7 @@ import {
   useColorMode,
   useColorModeValue
 } from '@chakra-ui/react'
-import { Fragment, useState } from 'react'
+import { ChangeEvent, Fragment, useState } from 'react'
 import { ReactSVG } from 'react-svg'
 import { Link, Element } from 'react-scroll'
 const NavBar = () => {
@@ -404,9 +404,11 @@ const Contact = () => {
     replyTo: '', // this will set replyTo of email to email address entered in the form
     accessKey: '26b9acef-4835-4bb9-bcb0-814e4bae0e99' // get your access key from https://www.staticforms.xyz
   })
-  console.log('file: page.tsx:409 ~ Contact ~ contact:', contact)
 
-  const handleChange = (fieldName, event) => {
+  const handleChange = (
+    fieldName: string,
+    event: ChangeEvent<HTMLInputElement>
+  ) => {
     setContact(prev => ({ ...prev, [fieldName]: event.target.value }))
   }
 
@@ -419,6 +421,7 @@ const Contact = () => {
 
   const handleSubmit = async e => {
     e.preventDefault()
+
     setIsLoading(true)
     try {
       const res = await fetch('https://api.staticforms.xyz/submit', {
