@@ -26,7 +26,15 @@ import HeroImage from '../assets/svg/HeroImage.svg'
 import { ReactSVG } from 'react-svg'
 import { Icon, createIcon } from '@chakra-ui/react'
 import Head from 'next/head'
-
+import {
+  Link,
+  DirectLink,
+  Element,
+  Events,
+  animateScroll as scroll,
+  scrollSpy,
+  scroller
+} from 'react-scroll'
 const NavBar = () => {
   const { colorMode, toggleColorMode } = useColorMode()
 
@@ -42,17 +50,43 @@ const NavBar = () => {
       justifySelf={'flex-start'}
       marginTop={'1%'}
     >
-      <Button variant={'ghost'}>Logo here :3</Button>
+      <Button variant={'ghost'}>:D</Button>
       <Spacer />
       <ButtonGroup variant={'ghost'} spacing={4}>
-        <Button display={['none', 'none', 'inline', 'inline']}>Services</Button>
-        <Button display={['none', 'none', 'inline', 'inline']}>
+        <Link
+          activeClass="servicesActive"
+          to="services"
+          smooth={true}
+          duration={500}
+        >
+          <Button display={['none', 'none', 'inline', 'inline']}>
+            Services
+          </Button>
+        </Link>
+        {/* <Button display={['none', 'none', 'inline', 'inline']}>
           Portfolios
-        </Button>
-        <Button display={['none', 'none', 'inline', 'inline']}>
-          Experiences
-        </Button>
-        <Button>Blog</Button>
+        </Button> */}
+        <Link
+          activeClass="contactActive"
+          to="contact"
+          smooth={true}
+          duration={500}
+        >
+          <Button display={['none', 'none', 'inline', 'inline']}>
+            Contact
+          </Button>
+        </Link>
+        <Link
+          activeClass="experiencesActive"
+          to="experiences"
+          smooth={true}
+          duration={500}
+        >
+          <Button display={['none', 'none', 'inline', 'inline']}>
+            Experiences
+          </Button>
+        </Link>
+        {/* <Button>Blog</Button> */}
       </ButtonGroup>
       <Spacer display={['none', 'none', 'inline', 'inline']} />
 
@@ -70,13 +104,13 @@ const NavBar = () => {
             iconSpacing={0}
           />
         )}
-        <Button
+        {/* <Button
           display={['none', 'none', 'inline', 'inline']}
           marginRight={'32px'}
           paddingRight={'0px'}
         >
           Resume
-        </Button>
+        </Button> */}
       </ButtonGroup>
     </Flex>
   )
@@ -168,91 +202,93 @@ const Services = () => {
   const { colorMode } = useColorMode()
   const bg = useColorModeValue('#FBFBFB', '#202736')
   return (
-    <Flex
-      minWidth={'100vw'}
-      minHeight={'100vh'}
-      direction={'column'}
-      align={'center'}
-      justify={'center'}
-      backgroundColor={bg}
-    >
-      <Container mt={'8%'} mb={'8%'} padding={0} centerContent>
-        <Text>Services</Text>
-        <Heading>Specialized in</Heading>
-      </Container>
-
+    <Element name="services">
       <Flex
-        width={'100vw'}
-        justify={'space-evenly'}
+        minWidth={'100vw'}
+        minHeight={'100vh'}
+        direction={'column'}
         align={'center'}
-        direction={['column', 'column', 'row', 'row']}
+        justify={'center'}
+        backgroundColor={bg}
       >
-        <Card
-          width={['100%', '100%', '361px', '361px']}
-          mb={'4%'}
-          height={'294px'}
-          display={'flex'}
-          align={'center'}
-          justify={'center'}
-        >
-          {colorMode === 'light' ? (
-            <ReactSVG src="Crown.svg" />
-          ) : (
-            <ReactSVG src="CrownDarkMode.svg" />
-          )}
-          <Heading marginY={['20px', '20px']} fontSize={'16px'}>
-            Cloud
-          </Heading>
-          <Text width={'274px'} textAlign={'center'}>
-            Deploy your applications with low cost and security
-          </Text>
-        </Card>
+        <Container mt={'8%'} mb={'8%'} padding={0} centerContent>
+          <Text>Services</Text>
+          <Heading>Specialized in</Heading>
+        </Container>
 
-        <Card
-          width={['100%', '100%', '361px', '361px']}
-          mb={'4%'}
-          height={'294px'}
-          display={'flex'}
+        <Flex
+          width={'100vw'}
+          justify={'space-evenly'}
           align={'center'}
-          justify={'center'}
+          direction={['column', 'column', 'row', 'row']}
         >
-          {colorMode === 'light' ? (
-            <ReactSVG src="Crown.svg" />
-          ) : (
-            <ReactSVG src="CrownDarkMode.svg" />
-          )}
-          <Heading marginY={['20px', '20px']} fontSize={'16px'}>
-            Application Development
-          </Heading>
-          <Text width={'274px'}>
-            Standard designing, building, and implementing your applications
-            with documentation.
-          </Text>
-        </Card>
+          <Card
+            width={['100%', '100%', '361px', '361px']}
+            mb={'4%'}
+            height={'294px'}
+            display={'flex'}
+            align={'center'}
+            justify={'center'}
+          >
+            {colorMode === 'light' ? (
+              <ReactSVG src="Crown.svg" />
+            ) : (
+              <ReactSVG src="CrownDarkMode.svg" />
+            )}
+            <Heading marginY={['20px', '20px']} fontSize={'16px'}>
+              Cloud
+            </Heading>
+            <Text width={'274px'} textAlign={'center'}>
+              Deploy your applications with low cost and security
+            </Text>
+          </Card>
 
-        <Card
-          width={['100%', '100%', '361px', '361px']}
-          mb={'4%'}
-          height={'294px'}
-          display={'flex'}
-          align={'center'}
-          justify={'center'}
-        >
-          {colorMode === 'light' ? (
-            <ReactSVG src="Crown.svg" />
-          ) : (
-            <ReactSVG src="CrownDarkMode.svg" />
-          )}
-          <Heading marginY={['20px', '20px']} fontSize={'16px'}>
-            Web Development
-          </Heading>
-          <Text width={'274px'}>
-            Create and maintain your websites and also take care of its
-            performance and traffic capacity.
-          </Text>
-        </Card>
+          <Card
+            width={['100%', '100%', '361px', '361px']}
+            mb={'4%'}
+            height={'294px'}
+            display={'flex'}
+            align={'center'}
+            justify={'center'}
+          >
+            {colorMode === 'light' ? (
+              <ReactSVG src="Crown.svg" />
+            ) : (
+              <ReactSVG src="CrownDarkMode.svg" />
+            )}
+            <Heading marginY={['20px', '20px']} fontSize={'16px'}>
+              Application Development
+            </Heading>
+            <Text width={'274px'}>
+              Standard designing, building, and implementing your applications
+              with documentation.
+            </Text>
+          </Card>
+
+          <Card
+            width={['100%', '100%', '361px', '361px']}
+            mb={'4%'}
+            height={'294px'}
+            display={'flex'}
+            align={'center'}
+            justify={'center'}
+          >
+            {colorMode === 'light' ? (
+              <ReactSVG src="Crown.svg" />
+            ) : (
+              <ReactSVG src="CrownDarkMode.svg" />
+            )}
+            <Heading marginY={['20px', '20px']} fontSize={'16px'}>
+              Web Development
+            </Heading>
+            <Text width={'274px'}>
+              Create and maintain your websites and also take care of its
+              performance and traffic capacity.
+            </Text>
+          </Card>
+        </Flex>
       </Flex>
-    </Flex>
+    </Element>
   )
 }
 
@@ -264,99 +300,105 @@ const Experiences = () => {
   const buttonBackground = useColorModeValue('#FBFBFB', '#1A202C')
 
   return (
-    <Flex
-      width={'100vw'}
-      minHeight={'100vh'}
-      align={'center'}
-      justify={['center', 'center', 'space-evenly', 'space-evenly']}
-      backgroundColor={bg}
-      direction={['column', 'column', 'row', 'row']}
-    >
+    <Element name="experiences">
       <Flex
-        direction={'column'}
-        align={'flex-start'}
-        justify={'center'}
-        mb={['10%', '10%', 0, 0]}
-        // width={'50%'}
-      >
-        <Box mb={'10%'}>
-          <Text
-            display={'inline'}
-            fontSize={12}
-            fontWeight={'medium'}
-            color={'#656D72'}
-          >
-            CARRER PATH
-          </Text>
-          <Heading>Work Experiences</Heading>
-        </Box>
-        <ButtonGroup variant={'ghost'} spacing={4}>
-          <Button
-            color={'#7E74F1'}
-            width={'280px'}
-            onClick={() => setSelectedExperience('infleux')}
-            background={buttonBackground}
-            // style={selectedExperience === 'infleux' ? { background: 'FBFBFB' }}
-          >
-            Infleux
-            <Spacer />
-            <ArrowForwardIcon />
-          </Button>
-        </ButtonGroup>
-      </Flex>
-
-      <Flex
-        direction={'column'}
-        align={['center', 'center', 'flex-start', 'flex-start']}
-        justify={'center'}
-        width={['100%', '100%', '50%', '50%']}
+        width={'100vw'}
+        minHeight={'100vh'}
+        align={'center'}
+        justify={['center', 'center', 'space-evenly', 'space-evenly']}
+        backgroundColor={bg}
+        direction={['column', 'column', 'row', 'row']}
       >
         <Flex
           direction={'column'}
-          justify={'space-around'}
-          align={['center', 'center', 'flex-start', 'flex-start']}
-          mb={'5%'}
+          align={'flex-start'}
+          justify={'center'}
+          mb={['10%', '10%', 0, 0]}
+          // width={'50%'}
         >
-          <Text fontSize={18} fontWeight={'medium'} color={jobHeaderTextColor}>
-            Front-end Developer infleux .co
-          </Text>
-          <Text fontSize={14} mb={4}>
-            Sao Paulo, Brazil
-          </Text>
-          <Text fontSize={14} mb={4} fontWeight={500}>
-            Out 2022 - Present · Full-time
-          </Text>
-          <Stack
-            wrap={'wrap'}
-            direction={'row'}
-            justify={['center', 'center', 'flex-start', 'flex-start']}
-            spacing={2}
-            width={'100%'}
+          <Box mb={'10%'}>
+            <Text
+              display={'inline'}
+              fontSize={12}
+              fontWeight={'medium'}
+              color={'#656D72'}
+            >
+              CARRER PATH
+            </Text>
+            <Heading>Work Experiences</Heading>
+          </Box>
+          <ButtonGroup variant={'ghost'} spacing={4}>
+            <Button
+              color={'#7E74F1'}
+              width={'280px'}
+              onClick={() => setSelectedExperience('infleux')}
+              background={buttonBackground}
+              // style={selectedExperience === 'infleux' ? { background: 'FBFBFB' }}
+            >
+              Infleux
+              <Spacer />
+              <ArrowForwardIcon />
+            </Button>
+          </ButtonGroup>
+        </Flex>
+
+        <Flex
+          direction={'column'}
+          align={['center', 'center', 'flex-start', 'flex-start']}
+          justify={'center'}
+          width={['100%', '100%', '50%', '50%']}
+        >
+          <Flex
+            direction={'column'}
+            justify={'space-around'}
+            align={['center', 'center', 'flex-start', 'flex-start']}
+            mb={'5%'}
           >
-            <Badge>React</Badge>
-            <Badge>Node</Badge>
-            <Badge>FeathersJS</Badge>
-            <Badge>NextJS</Badge>
-            <Badge>AWS</Badge>
-            <Badge>MongoDB</Badge>
-            <Badge>MySQL</Badge>
-            <Badge>Postgrees</Badge>
+            <Text
+              fontSize={18}
+              fontWeight={'medium'}
+              color={jobHeaderTextColor}
+            >
+              Front-end Developer infleux .co
+            </Text>
+            <Text fontSize={14} mb={4}>
+              Sao Paulo, Brazil
+            </Text>
+            <Text fontSize={14} mb={4} fontWeight={500}>
+              Out 2022 - Present · Full-time
+            </Text>
+            <Stack
+              wrap={'wrap'}
+              direction={'row'}
+              justify={['center', 'center', 'flex-start', 'flex-start']}
+              spacing={2}
+              width={'100%'}
+            >
+              <Badge>React</Badge>
+              <Badge>Node</Badge>
+              <Badge>FeathersJS</Badge>
+              <Badge>NextJS</Badge>
+              <Badge>AWS</Badge>
+              <Badge>MongoDB</Badge>
+              <Badge>MySQL</Badge>
+              <Badge>Postgrees</Badge>
+            </Stack>
+          </Flex>
+          <Divider width={'80%'} mb={'5%'} />
+          <Stack width={'80%'} direction={'column'} spacing={2}>
+            <Text color={jobDescriptionTextColor}>
+              - Software developer with experience in backend and frontend
+              development. Skilled in using Node.js, FeathersJS, MongoDB, MySQL,
+              PostgreSQL, React, Next.js, React Native, and React-Admin.
+              Expertise in building APIs and working with various databases for
+              backend development. Proficient in developing web applications
+              using Next.js and mobile applications using React Native, as well
+              as administrating web applications using React-Admin.empresa
+            </Text>
           </Stack>
         </Flex>
-        <Divider width={'80%'} mb={'5%'} />
-        <Stack width={'80%'} direction={'column'} spacing={2}>
-          <Text color={jobDescriptionTextColor}>
-            - Software developer with experience in backend and frontend
-            development. Skilled in using Node.js, FeathersJS, MongoDB, MySQL,
-            PostgreSQL, React, Next.js, React Native, and React-Admin. Expertise
-            in building APIs and working with various databases for backend
-            development. Proficient in developing web applications using Next.js
-            and mobile applications using React Native, as well as
-            administrating web applications using React-Admin.empresa
-          </Text>
-        </Stack>
       </Flex>
-    </Flex>
+    </Element>
   )
 }
 
@@ -365,67 +407,74 @@ const Contact = () => {
   const { colorMode } = useColorMode()
 
   return (
-    <Flex
-      minWidth={'100vw'}
-      minHeight={'100vh'}
-      direction={'row'}
-      align={'center'}
-      justify={'space-evenly'}
-      backgroundColor={bg}
-    >
-      <VStack width={'600px'} spacing={4}>
-        <Input width={'100%'} placeholder="Name" height="48px" />
-        <Input width={'100%'} placeholder="Email" height="48px" />
-        <Input width={'100%'} placeholder="Message" height="189px" />
-        <Button
-          backgroundColor={'#7E74F1'}
-          width={'100%'}
-          height={'48px'}
-          marginTop={4}
-          color={'white'}
+    <Element name="contact">
+      <Flex
+        minWidth={'100vw'}
+        minHeight={'100vh'}
+        direction={['column-reverse', 'column-reverse', 'row', 'row']}
+        align={'center'}
+        justify={'space-evenly'}
+        backgroundColor={bg}
+      >
+        <VStack width={'600px'} spacing={4}>
+          <Input width={'100%'} placeholder="Name" height="48px" />
+          <Input width={'100%'} placeholder="Email" height="48px" />
+          <Input width={'100%'} placeholder="Message" height="189px" />
+          <Button
+            backgroundColor={'#7E74F1'}
+            width={'100%'}
+            height={'48px'}
+            marginTop={4}
+            color={'white'}
+          >
+            Send message
+          </Button>
+        </VStack>
+
+        <VStack
+          align={'flex-start'}
+          justify={'space-between'}
+          height={'264px'}
+          spacing={4}
         >
-          Send message
-        </Button>
-      </VStack>
+          <HStack justify={'flex-start'}>
+            {colorMode === 'light' ? (
+              <ReactSVG src="Localization.svg" />
+            ) : (
+              <ReactSVG src="LocalizationDarkMode.svg" />
+            )}
+            <VStack ml={'16px'}>
+              <Text fontWeight={700}>Address</Text>
+              <Text>Torres, Brazil</Text>
+            </VStack>
+          </HStack>
 
-      <VStack align={'flex-start'} justify={'space-between'} height={'264px'} spacing={4}>
-        <HStack justify={'flex-start'}>
-          { colorMode === 'light' ? (
-            <ReactSVG src="Localization.svg" />
-          ) : (
-            <ReactSVG src="LocalizationDarkMode.svg" />
-          )}
-          <VStack ml={'16px'}>
-            <Text fontWeight={700}>Address</Text>
-            <Text>Torres, Brazil</Text>
-          </VStack>
-        </HStack>
+          <HStack>
+            {colorMode === 'light' ? (
+              <ReactSVG src="Phone.svg" />
+            ) : (
+              <ReactSVG src="PhoneDarkMode.svg" />
+            )}
+            <VStack ml={'16px'}>
+              <Text fontWeight={700}>Phone</Text>
+              <Text>(48) 991396702</Text>
+            </VStack>
+          </HStack>
 
-        <HStack>
-          { colorMode === 'light' ? (
-            <ReactSVG src="Phone.svg" />
-          ) : (
-            <ReactSVG src="PhoneDarkMode.svg" />
-          )}
-          <VStack ml={'16px'}>
-            <Text fontWeight={700}>Phone</Text>
-            <Text>(48) 991396702</Text>
-          </VStack>
-        </HStack>
-
-        <HStack>
-          { colorMode === 'light' ? (
-            <ReactSVG src="Email.svg" />
-          ) : (
-            <ReactSVG src="EmailDarkMode.svg" />
-          )}
-          <VStack ml={'16px'}>
-            <Text fontWeight={700}>Email</Text>
-            <Text>arieldemello@hotmail.com</Text>
-          </VStack>
-        </HStack>
-      </VStack>
-    </Flex>
+          <HStack>
+            {colorMode === 'light' ? (
+              <ReactSVG src="Email.svg" />
+            ) : (
+              <ReactSVG src="EmailDarkMode.svg" />
+            )}
+            <VStack ml={'16px'}>
+              <Text fontWeight={700}>Email</Text>
+              <Text>arieldemello@hotmail.com</Text>
+            </VStack>
+          </HStack>
+        </VStack>
+      </Flex>
+    </Element>
   )
 }
 
