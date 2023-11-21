@@ -166,7 +166,6 @@ const Hero = () => {
 
 const Services = () => {
   const { colorMode } = useColorMode()
-  console.log('🚀 ~ file: page.tsx:155 ~ Services ~ colorMode:', colorMode)
   const bg = useColorModeValue('#FBFBFB', '#202736')
   return (
     <Flex
