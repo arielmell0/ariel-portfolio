@@ -23,9 +23,7 @@ import {
 } from '@chakra-ui/react'
 import { Fragment, useState } from 'react'
 import { ReactSVG } from 'react-svg'
-import {
-  Link,
-  Element} from 'react-scroll'
+import { Link, Element } from 'react-scroll'
 const NavBar = () => {
   const { colorMode, toggleColorMode } = useColorMode()
 
@@ -397,6 +395,61 @@ const Contact = () => {
   const bg = useColorModeValue('#FBFBFB', '#202736')
   const { colorMode } = useColorMode()
 
+  const [contact, setContact] = useState({
+    name: '',
+    email: '',
+    subject: 'Ariel Portfolio - Contact Form',
+    honeypot: '', // if any value received in this field, form submission will be ignored.
+    message: '',
+    replyTo: '', // this will set replyTo of email to email address entered in the form
+    accessKey: '26b9acef-4835-4bb9-bcb0-814e4bae0e99' // get your access key from https://www.staticforms.xyz
+  })
+  console.log('file: page.tsx:409 ~ Contact ~ contact:', contact)
+
+  const handleChange = (fieldName, event) => {
+    setContact(prev => ({ ...prev, [fieldName]: event.target.value }))
+  }
+
+  const [response, setResponse] = useState({
+    type: '',
+    message: ''
+  })
+
+  const [isLoading, setIsLoading] = useState(false)
+
+  const handleSubmit = async e => {
+    e.preventDefault()
+    setIsLoading(true)
+    try {
+      const res = await fetch('https://api.staticforms.xyz/submit', {
+        method: 'POST',
+        body: JSON.stringify(contact),
+        headers: { 'Content-Type': 'application/json' }
+      })
+
+      const json = await res.json()
+
+      if (json.success) {
+        setResponse({
+          type: 'success',
+          message: 'Thank you for reaching out to us.'
+        })
+      } else {
+        setResponse({
+          type: 'error',
+          message: json.message
+        })
+      }
+    } catch (e) {
+      console.log('An error occurred', e)
+      setResponse({
+        type: 'error',
+        message: 'An error occured while submitting the form'
+      })
+    }
+    setIsLoading(false)
+  }
+
   return (
     <Element name="contact">
       <Flex
@@ -408,15 +461,31 @@ const Contact = () => {
         backgroundColor={bg}
       >
         <VStack width={'600px'} spacing={4}>
-          <Input width={'100%'} placeholder="Name" height="48px" />
-          <Input width={'100%'} placeholder="Email" height="48px" />
-          <Input width={'100%'} placeholder="Message" height="189px" />
+          <Input
+            onChange={e => handleChange('name', e)}
+            width={'100%'}
+            placeholder="Name"
+            height="48px"
+          />
+          <Input
+            onChange={e => handleChange('email', e)}
+            width={'100%'}
+            placeholder="Email"
+            height="48px"
+          />
+          <Input
+            onChange={e => handleChange('message', e)}
+            width={'100%'}
+            placeholder="Message"
+            height="189px"
+          />
           <Button
             backgroundColor={'#7E74F1'}
             width={'100%'}
             height={'48px'}
             marginTop={4}
             color={'white'}
+            onClick={handleSubmit}
           >
             Send message
           </Button>
