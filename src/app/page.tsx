@@ -19,7 +19,8 @@ import {
   Text,
   VStack,
   useColorMode,
-  useColorModeValue
+  useColorModeValue,
+  useToast
 } from '@chakra-ui/react'
 import { ChangeEvent, Fragment, useState } from 'react'
 import { ReactSVG } from 'react-svg'
@@ -412,10 +413,7 @@ const Contact = () => {
     setContact(prev => ({ ...prev, [fieldName]: event.target.value }))
   }
 
-  const [response, setResponse] = useState({
-    type: '',
-    message: ''
-  })
+  const toast = useToast()
 
   const [isLoading, setIsLoading] = useState(false)
 
@@ -424,30 +422,27 @@ const Contact = () => {
 
     setIsLoading(true)
     try {
-      const res = await fetch('https://api.staticforms.xyz/submit', {
+      await fetch('https://api.staticforms.xyz/submit', {
         method: 'POST',
         body: JSON.stringify(contact),
         headers: { 'Content-Type': 'application/json' }
       })
 
-      const json = await res.json()
-
-      if (json.success) {
-        setResponse({
-          type: 'success',
-          message: 'Thank you for reaching out to us.'
-        })
-      } else {
-        setResponse({
-          type: 'error',
-          message: json.message
-        })
-      }
+      toast({
+        title: 'Email sent.',
+        description: "Your email has been successfully sent.",
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+      })
     } catch (e) {
       console.log('An error occurred', e)
-      setResponse({
-        type: 'error',
-        message: 'An error occured while submitting the form'
+      toast({
+        title: 'Email error.',
+        description: "Oops, the email failed to send.",
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
       })
     }
     setIsLoading(false)
@@ -488,6 +483,7 @@ const Contact = () => {
             height={'48px'}
             marginTop={4}
             color={'white'}
+            disabled={isLoading}
             onClick={handleSubmit}
           >
             Send message
