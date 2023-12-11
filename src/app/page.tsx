@@ -22,9 +22,10 @@ import {
   useColorModeValue,
   useToast
 } from '@chakra-ui/react'
-import { ChangeEvent, Fragment, useState } from 'react'
+import { Fragment, useState } from 'react'
 import { ReactSVG } from 'react-svg'
 import { Link, Element } from 'react-scroll'
+import { useForm } from "react-hook-form"
 const NavBar = () => {
   const { colorMode, toggleColorMode } = useColorMode()
 
@@ -396,35 +397,21 @@ const Contact = () => {
   const bg = useColorModeValue('#FBFBFB', '#202736')
   const { colorMode } = useColorMode()
 
-  const [contact, setContact] = useState({
-    name: '',
-    email: '',
-    subject: 'Ariel Portfolio - Contact Form',
-    honeypot: '', // if any value received in this field, form submission will be ignored.
-    message: '',
-    replyTo: '', // this will set replyTo of email to email address entered in the form
-    accessKey: '26b9acef-4835-4bb9-bcb0-814e4bae0e99' // get your access key from https://www.staticforms.xyz
-  })
-
-  const handleChange = (
-    fieldName: string,
-    event: ChangeEvent<HTMLInputElement>
-  ) => {
-    setContact(prev => ({ ...prev, [fieldName]: event.target.value }))
-  }
+  const { register, handleSubmit, watch, formState: { errors } } = useForm()
+  console.log(watch())
 
   const toast = useToast()
 
   const [isLoading, setIsLoading] = useState(false)
 
-  const handleSubmit = async (e: any) => {
-    e.preventDefault()
+  const onSubmit = async (data: {name: string, email: string, message: string}) => {
+    console.log(e)
 
     setIsLoading(true)
     try {
       await fetch('https://api.staticforms.xyz/submit', {
         method: 'POST',
-        body: JSON.stringify(contact),
+        body: JSON.stringify({accessKey: '26b9acef-4835-4bb9-bcb0-814e4bae0e99', ...data}),
         headers: { 'Content-Type': 'application/json' }
       })
 
@@ -460,19 +447,19 @@ const Contact = () => {
       >
         <VStack width={'600px'} spacing={4}>
           <Input
-            onChange={e => handleChange('name', e)}
+            {...register("name", { required: true })}
             width={['80vw', '80vw', '100%', '100%']}
             placeholder="Name"
             height="48px"
           />
           <Input
-            onChange={e => handleChange('email', e)}
+           {...register("email", { required: true })}
             width={['80vw', '80vw', '100%', '100%']}
             placeholder="Email"
             height="48px"
           />
           <Input
-            onChange={e => handleChange('message', e)}
+            {...register("message", { required: true, minLength: 5 })}
             width={['80vw', '80vw', '100%', '100%']}
             placeholder="Message"
             height="189px"
@@ -484,7 +471,7 @@ const Contact = () => {
             marginTop={4}
             color={'white'}
             disabled={isLoading}
-            onClick={handleSubmit}
+            onClick={handleSubmit(onSubmit)}
           >
             Send message
           </Button>
