@@ -397,7 +397,7 @@ const Contact = () => {
   const bg = useColorModeValue('#FBFBFB', '#202736')
   const { colorMode } = useColorMode()
 
-  const { register, handleSubmit, watch, formState: { errors } } = useForm()
+  const { register, handleSubmit, reset, formState: { errors } } = useForm()
 
   const toast = useToast()
 
@@ -429,6 +429,7 @@ const Contact = () => {
         isClosable: true,
       })
     }
+    reset()
     setIsLoading(false)
   }
 
@@ -442,7 +443,7 @@ const Contact = () => {
         justify={'space-evenly'}
         backgroundColor={bg}
       >
-        <VStack width={'600px'} spacing={4}>
+        <VStack width={'25vw'} spacing={4}>
           <Input
             {...register("name", { required: { value: true, message: 'Enter your name' }})}
             width={['80vw', '80vw', '100%', '100%']}
@@ -490,6 +491,7 @@ const Contact = () => {
           justify={'space-between'}
           height={'264px'}
           spacing={4}
+          marginBottom={[0, 0, 2, 2]}
         >
           <HStack justify={'flex-start'}>
             {colorMode === 'light' ? (
