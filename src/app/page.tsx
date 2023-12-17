@@ -398,15 +398,12 @@ const Contact = () => {
   const { colorMode } = useColorMode()
 
   const { register, handleSubmit, watch, formState: { errors } } = useForm()
-  console.log(watch())
 
   const toast = useToast()
 
   const [isLoading, setIsLoading] = useState(false)
 
   const onSubmit = async (data: {name: string, email: string, message: string}) => {
-    console.log(e)
-
     setIsLoading(true)
     try {
       await fetch('https://api.staticforms.xyz/submit', {
@@ -447,19 +444,25 @@ const Contact = () => {
       >
         <VStack width={'600px'} spacing={4}>
           <Input
-            {...register("name", { required: true })}
+            {...register("name", { required: { value: true, message: 'Enter your name' }})}
             width={['80vw', '80vw', '100%', '100%']}
             placeholder="Name"
             height="48px"
           />
           <Input
-           {...register("email", { required: true })}
+            {...register("email", {
+              required: { value: true, message: 'Enter your email address' },
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                message: "Invalid email",
+              },
+            })}
             width={['80vw', '80vw', '100%', '100%']}
             placeholder="Email"
             height="48px"
           />
           <Input
-            {...register("message", { required: true, minLength: 5 })}
+            {...register("message", { required: { value: true, message: 'Enter a message' }, minLength: { value: 10, message: 'Message need a minimum length of 10 characters'} })}
             width={['80vw', '80vw', '100%', '100%']}
             placeholder="Message"
             height="189px"
@@ -475,6 +478,11 @@ const Contact = () => {
           >
             Send message
           </Button>
+          {errors && (
+            Object.keys(errors).map(key => (
+              <Text color='#ffcc00' key={key}>{errors[key].message}</Text>
+            ))
+          )}
         </VStack>
 
         <VStack
