@@ -1,7 +1,6 @@
 'use client'
 
-import {
-  Flex} from '@chakra-ui/react'
+import { Flex } from '@chakra-ui/react'
 import { Fragment } from 'react'
 import NavBar from '@/containers/landing-page/navbar/index'
 import Hero from '@/containers/landing-page/hero/index'
