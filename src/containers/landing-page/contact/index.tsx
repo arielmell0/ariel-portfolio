@@ -26,7 +26,7 @@ const Contact = () => {
 
   const [isLoading, setIsLoading] = useState(false)
 
-  const onSubmit = async data => {
+  const onSubmit = async (data: any) => {
     setIsLoading(true)
     try {
       await fetch('https://api.staticforms.xyz/submit', {
