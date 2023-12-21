@@ -103,9 +103,19 @@ const Contact = () => {
             Send message
           </Button>
           {errors && (
-            Object.keys(errors).map(key => (
-              <Text color='#ffcc00' key={key}>{errors[key].message}</Text>
-            ))
+            Object.keys(errors).map(key => {
+              const error = errors[key]
+              if (typeof error === 'string') {
+                return (
+                  <Text color='#ffcc00' key={key}>{error}</Text>
+                )
+              } else if (error && 'message' in error && typeof error.message === 'string') {
+                return (
+                  <Text color='#ffcc00' key={key}>{error.message}</Text>
+                )
+              }
+              return null // or handle other cases accordingly
+            })
           )}
         </VStack>
 
